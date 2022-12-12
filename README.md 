@@ -1,0 +1,38 @@
+### Docker Next.js
+
+## start command 
+
+make start
+
+## 親ディレクトリーに存在するMakefileはローカル環境用実行ファイル
+## 子ディレクトリーに存在するMakefileは開発環境用(docker)
+
+```
+project_test_next
+│   README.md  ココ
+│   Makefile  global実行ファイル
+│   list.txt  プロジェクト数管理ファイル
+│   create.sh 開発テスト環境作成コマンドファイル
+│   docker-compose.yml  dockerコンテナ開発ファイル
+│　　package-lock.json　　Next.js作成コマンドパッケージ管理
+│
+└───.docker
+│   └───node
+│       │   Dockerfile  docker-compose参照先
+│
+│
+└───node_modules
+│   └───.bin
+│   │   │   create-next-app  Next作成コマンドファイル
+│   │
+│   └───create-next-app
+│       │   ...
+│   
+└───project?
+    │   Makefile  開発実行ファイル
+    │   package.json 開発本番環境構築コマンド管理ファイル
+    │   README.md  Next.js 解説マークダウン
+	└───pages ルーティング自動設定（ココにデザインを書き込んでいく）
+	│       │   ...
+    │   ...
+```

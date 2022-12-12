@@ -1,0 +1,37 @@
+# docker composeで使用するバージョンを定義しています。
+version: "3.7"
+
+# アプリケーションを動かすための各要素
+services:
+  display:
+    # Dockerコンテナの名前を指定
+    container_name: Next
+    # Dockerネットワークの名前を指定
+    hostname: next.server
+    # ComposeFileを実行し、ビルドのネスト文
+    build:
+      # ビルド先のパス
+      context: ./.docker/node/.
+      # 使用するdockerfileの名前を指定
+      dockerfile: Dockerfile
+    # 環境変数の設定
+    environment:
+      # ホットリロード環境設定
+      - CHOKIDAR_USEPOLLING=true
+    # 特定サービスの作業用ディレクトリ指定
+    working_dir: /var/www/html/app
+    # 実行時に再起動するかどうか
+    restart: always
+    # 標準入出力とエラー出力をコンテナに結びつける設定
+    stdin_open: true
+    # 擬似端末(キーボードによる入力)をコンテナに結びつける設定
+    tty: true
+    # マウントする設定ファイルのパスを指定
+    volumes:
+      - .:/var/www/html/app
+    # 立ち上げる際のポート番号()
+    ports:
+      - target: 3000
+        published: 3080
+        protocol: tcp
+        mode: host
