@@ -1,4 +1,4 @@
-.PHONY: bash start restart stop
+.PHONY: bash start restart stop git
 
 bash:
 	docker compose exec display bash
@@ -14,3 +14,8 @@ stop:
 
 create:
 	bash create.sh
+
+git:
+	git add .
+	git commit -m 'make file up'
+	git push -u origin main
